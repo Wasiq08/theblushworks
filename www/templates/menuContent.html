@@ -49,10 +49,15 @@
     
     
     
-  <ion-infinite-scroll ng-if="canLoadMore()"
+  <!--<ion-infinite-scroll ng-if="canLoadMore()"
     on-infinite="loadMore()">
-  </ion-infinite-scroll>
+  </ion-infinite-scroll>-->
     
+    
+     <ion-infinite-scroll
+    on-infinite="loadMore()"
+    distance="1%">
+  </ion-infinite-scroll>
     
 </ion-content>
 

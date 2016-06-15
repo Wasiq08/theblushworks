@@ -14,10 +14,6 @@ angular.module('starter')
     })
     
     
-    
-    
-    
-    
    $scope.doRefresh = function(){
     
     $scope.recent_posts=[];
@@ -26,7 +22,7 @@ angular.module('starter')
         $scope.recent_posts = data.data.posts;
         $scope.count_total = data.data.count_total; 
         $scope.recent_posts.forEach(function(elem , index , array){
-         elem.excerpt = elem.excerpt.substr(0,100);
+         elem.excerpt = elem.excerpt.substr(0,70);
          elem.excerpt = elem.excerpt + "...Read More";
          elem.excerpt = $sce.trustAsHtml(elem.excerpt);
         })
@@ -64,13 +60,7 @@ angular.module('starter')
          console.log(err);  
     })   
    
-   
-   
-   
-   
-   
-   
-   
+ 
     
     $scope.canLoadMore = function(){
         return true;
@@ -80,20 +70,14 @@ angular.module('starter')
     $scope.lastTimer = new Date().getTime();
     
     $scope.loadMore = function(){
-        
+    
           $scope.timer =  new Date().getTime();
             
-          if(new Date ($scope.timer - $scope.lastTimer) > 5000 ) 
-           {
-              
-              $scope.lastTimer = new Date().getTime();
-              
-              
-          $http.get("http://www.theblushworks.com/api/get_posts/?offset="+$scope.offset).then(function (data) {
+            $http.get("http://www.theblushworks.com/api/get_posts/?offset="+$scope.offset).then(function (data) {
             var newPosts = data.data.posts;
             $scope.count_total = data.data.count_total; 
          
-                  
+                 
                     newPosts.forEach(function(elem , index , array){
                     elem.excerpt = elem.excerpt.substr(0,100);
                     elem.excerpt = elem.excerpt + "...Read More";
@@ -105,10 +89,7 @@ angular.module('starter')
                   $scope.offset +=10;  
     
         });
-              
-                       
-    }
-        
+            
     }
     
     
@@ -121,10 +102,17 @@ angular.module('starter')
     
 })
 
-
-
-
-.controller('PostCtrl',function () {
+.controller('PostCtrl',function () { 
+   
+            $http.get('http://www.theblushworks.com/api/get_post/?id='+$stateParams.postId).then(function (data) {
+                $scope.postTitle = data.data.post.title ;
+               
+            },function(err){
+                
+                
+                
+            })
     
+     
 })
 
