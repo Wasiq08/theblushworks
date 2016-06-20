@@ -97,6 +97,28 @@ angular.module('starter')
     }
 
     
+    $scope.toggleFavorite = function(post){
+        
+        post.isFavorite = !post.isFavorite;
+        
+        if(post.isFavorite == true){
+            $scope.Favorites.push(post.id);
+        }else{
+            $scope.Favorites.forEach(function(e , i , a){
+                if(e == post.id){
+                     $scope.Favorites.splice(i,1);
+                }
+                
+            })
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
     
     
 })
@@ -128,7 +150,7 @@ angular.module('starter')
 
 .controller('CatCtrl',function ($http, $scope, $stateParams, $sce) { 
    
-   $scope.doRefresh() = function(){
+   $scope.doRefresh = function(){
        
        
        
