@@ -33,6 +33,13 @@ angular.module('starter', ['ionic'])
    templateUrl:'templates/menu.html',
    controller:'MenuCtrl'
  })
+
+ .state('main.contentByCategory', {
+   url:'/contentByCategory/:catId',
+   templateUrl:'templates/contentByCategory.html',
+    controller:'CatCtrl'
+ })
+
  
  .state('main.contentRecent', {
    url:'/contentRecent',

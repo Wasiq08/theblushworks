@@ -1,0 +1,53 @@
+<ion-view>
+    <ion-nav-bar class="bar-assertive">
+        <ion-nav-buttons side="left">
+            <button class=" button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>  
+        </ion-nav-buttons>
+            
+        
+       <ion-nav-buttons side="right">
+             <button class="button buttion-icon button-clear ion-heart">
+            </button>        
+       
+       </ion-nav-buttons>
+       </ion-nav-bar>
+       
+      
+        <ion-header-bar class="bar bar-assertive">
+            <div class="title"><center>{{category_ttile}}</center></div>
+    </ion-header-bar>
+            
+     <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-inset">
+            <i class="icon ion-ios-search  placeholder-icon"></i>
+            <input type="search" placeholder="Search..." ng-model="searchText" ng-change="searchTextChanged()"/>    
+        </label>      
+        
+         
+    </div>
+
+<ion-content class="has-subheader" delegate-handle="mainScroll">
+    <ion-refresher
+    pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+  </ion-refresher>
+<ion-list>
+    <ion-item class="item item-thumbnail-left item-text-wrap ng-repeat="post in category_posts | filter : {title : searchText} 
+    " href="#/main/postDetail/{{post.id}}" >
+        <img ng-src="{{post.thumbnail_images.medium_large.url}}">
+        <h2 ng-bind-html="post.title"></h2>
+        <p ng-bind-html="post.excerpt"></p>
+        
+        <ion-option-button class="button-dark">
+            <i class="icon ion-heart"></i>
+            </ion-option-button>
+        
+        </ion-item>
+    
+    </ion-list>    
+    
+    
+    
+</ion-content>
+
+</ion-view>

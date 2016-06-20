@@ -122,7 +122,43 @@ angular.module('starter')
             
                 
             })
+   
+})
 
+
+.controller('CatCtrl',function ($http, $scope, $stateParams, $sce) { 
+   
+   $scope.doRefresh() = function(){
+       
+       
+       
+             $http.get('http://www.theblushworks.com/api/get_category_posts/?id='+ $stateParams.catId).then(function (data) {
+                $scope.category_posts = data.data.posts;
+                
+                    $scope.category_posts.forEach(function(elem , index , array){
+                    elem.excerpt = elem.excerpt.substr(0,100);
+                    elem.excerpt = elem.excerpt + "...Read More";
+                    elem.excerpt = $sce.trustAsHtml(elem.excerpt);
+                    })
+                    $scope.catagroy_title = data.data.category.title;
+                    $scope.$broadcast('scroll.refreshComplete');
+                     
+            }, function(err){
+                
+      
+            })
+   
+       
+       
+       
+       
+       
+   }
+   
+       
+       
      
+$scope.doRefresh();
+   
 })
 

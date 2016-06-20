@@ -10,7 +10,7 @@
         </ion-header-bar> 
             <ion-content>
                 <ion-list>
-                    <ion-item menu-close ng-repeat="category in categories"" href "">
+                    <ion-item menu-close ng-repeat="category in categories""  href="#/main/contentByCategory/{{category.id}}">
                         <span>{{category.title}} </span><span class="badge badge-assertive">{{category.post_count}}</span>
                 </ion-list>
             </ion-content>    
