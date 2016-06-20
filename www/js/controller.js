@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('MenuCtrl',function ($http, $scope ,$sce ,$ionicScrollDelegate) {
+.controller('MenuCtrl',function ($http, $scope ,$sce ,$ionicScrollDelegate , $localStorage) {
     
     $scope.categories=[];
     $scope.count_total = 1 ;
@@ -24,6 +24,10 @@ angular.module('starter')
          elem.excerpt = elem.excerpt.substr(0,70);
          elem.excerpt = elem.excerpt + "...Read More";
          elem.excerpt = $sce.trustAsHtml(elem.excerpt);
+            if($scope.Favorites.indexOf(elem.id) != -1 )
+                    elem.isFavorite = true;
+            else
+                elem.isFavorite = false;
         })
             
         
@@ -37,6 +41,8 @@ angular.module('starter')
        
    }
    
+  $scope.Favorites = $localStorage.Favorites;
+
    if(!$scope.Favorites)
          $scope.Favorites = [];
    
@@ -113,7 +119,9 @@ angular.module('starter')
                 
             })
         }
-        
+
+        $localStorage.Favorites = $scope.Favorites;
+        console.log("FAV",$scope.Favorites);
         
         
     }
@@ -157,6 +165,7 @@ angular.module('starter')
        
        
              $http.get('http://www.theblushworks.com/api/get_category_posts/?id='+ $stateParams.catId).then(function (data) {
+                console.log("PPPPP",data);
                 $scope.category_posts = data.data.posts;
                 
                     $scope.category_posts.forEach(function(elem , index , array){
