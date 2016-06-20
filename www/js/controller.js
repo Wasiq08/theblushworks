@@ -37,7 +37,8 @@ angular.module('starter')
        
    }
    
-   
+   if(!$scope.Favorites)
+         $scope.Favorites = [];
    
     
     $scope.recent_posts=[];
@@ -98,7 +99,7 @@ angular.module('starter')
 
     
     $scope.toggleFavorite = function(post){
-        
+        console.log("POST",post);
         post.isFavorite = !post.isFavorite;
         
         if(post.isFavorite == true){
@@ -107,6 +108,7 @@ angular.module('starter')
             $scope.Favorites.forEach(function(e , i , a){
                 if(e == post.id){
                      $scope.Favorites.splice(i,1);
+                     console.log("SPLICE",i);
                 }
                 
             })

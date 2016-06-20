@@ -39,6 +39,7 @@
         <img ng-src="{{post.thumbnail_images.medium_large.url}}">
         <h2 ng-bind-html="post.title"></h2>
         <p ng-bind-html="post.excerpt"></p>
+        <button class="button icon ion-heart button-clear" ng-class="{'button-assertive':post.isFavorite}"></button>
         
         <ion-option-button class="button-dark" ng-click="toggleFavorite(post)">
             <i class="icon ion-heart"></i>
