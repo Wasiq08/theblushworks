@@ -150,6 +150,18 @@ angular.module('starter')
 
         })
 
+
+        $scope.Share  = function(){
+            window.plugins.socialsharing.share($scope.post_title , $scope.post_title ,  $scope.post_image , $scope.post_url)
+
+
+        }
+
+
+
+
+
+
     })
 
 
