@@ -153,13 +153,16 @@ angular.module('starter')
     })
 
 
-    .controller('CatCtrl', function ($http, $scope, $stateParams, $sce) {
+    .controller('CatCtrl', function ($http, $scope, $stateParams, $localStorage , $sce) {
+        
+        if (!$scope.Favorites)
+            $scope.Favorites = [];
 
         $scope.doRefresh = function () {
 
 
             $http.get('http://www.theblushworks.com/api/get_category_posts/?id=' + $stateParams.catId).then(function (data) {
-                console.log("PPPPP", data);
+                console.log("PPPPP", data.data.category.title);
                 $scope.category_posts = data.data.posts;
 
                 $scope.category_posts.forEach(function (elem, index, array) {
@@ -176,7 +179,29 @@ angular.module('starter')
 
         }
 
-        $scope.doRefresh();
+         $scope.toggleFavorite = function (post) {
+            console.log("POST", post);
+            post.isFavorite = !post.isFavorite;
+
+            if (post.isFavorite == true) {
+                $scope.Favorites.push(post.id);
+            } else {
+                $scope.Favorites.forEach(function (e, i, a) {
+                    if (e == post.id) {
+                        $scope.Favorites.splice(i, 1);
+                        console.log("SPLICE", i);
+                    }
+
+                })
+            }
+
+            $localStorage.Favorites = $scope.Favorites;
+            console.log("FAV", $scope.Favorites);
+
+
+        }
+
+         $scope.doRefresh();
 
     })
 
