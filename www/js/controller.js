@@ -213,7 +213,7 @@ angular.module('starter')
 
     .controller('FavCtrl', function ($http, $scope, $localStorage, $sce) {
         
-        console.log("MERADAD");
+    
         
         $scope.doRefresh = function() {
             
@@ -224,7 +224,7 @@ angular.module('starter')
         $scope.favorite_posts = [];
         $scope.Favorites.forEach(function (e, i, a) {
             $http.get('http://www.theblushworks.com/api/get_post/?id=' + e).then(function (data) {
-               console.log("FAVORITE",data);
+             
                 $scope.favorite_posts.push(data.data.post);
 
                 if ($scope.favorite_posts.length == $scope.Favorites.length) {
@@ -253,7 +253,7 @@ angular.module('starter')
            
             
             $scope.toggleFavorite = function (post) {
-            console.log("POST", post);
+           
             post.isFavorite = !post.isFavorite;
 
             if (post.isFavorite == true) {
@@ -262,7 +262,7 @@ angular.module('starter')
                 $scope.Favorites.forEach(function (e, i, a) {
                     if (e == post.id) {
                         $scope.Favorites.splice(i, 1);
-                        console.log("SPLICE", i);
+                       
                     }
 
                 })
