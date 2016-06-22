@@ -89,7 +89,6 @@ angular.module('starter')
 
 
         $scope.toggleFavorite = function (post) {
-            console.log("POST", post);
             post.isFavorite = !post.isFavorite;
 
             if (post.isFavorite == true) {
@@ -98,14 +97,14 @@ angular.module('starter')
                 $scope.Favorites.forEach(function (e, i, a) {
                     if (e == post.id) {
                         $scope.Favorites.splice(i, 1);
-                        console.log("SPLICE", i);
+                        
                     }
 
                 })
             }
 
             $localStorage.Favorites = $scope.Favorites;
-            console.log("FAV", $scope.Favorites);
+          
 
 
         }
@@ -158,10 +157,6 @@ angular.module('starter')
         }
 
 
-
-
-
-
     })
 
 
@@ -192,7 +187,6 @@ angular.module('starter')
         }
 
          $scope.toggleFavorite = function (post) {
-            console.log("POST", post);
             post.isFavorite = !post.isFavorite;
 
             if (post.isFavorite == true) {
@@ -201,14 +195,14 @@ angular.module('starter')
                 $scope.Favorites.forEach(function (e, i, a) {
                     if (e == post.id) {
                         $scope.Favorites.splice(i, 1);
-                        console.log("SPLICE", i);
+                      
                     }
 
                 })
             }
 
             $localStorage.Favorites = $scope.Favorites;
-            console.log("FAV", $scope.Favorites);
+           
 
 
         }
@@ -218,6 +212,8 @@ angular.module('starter')
     })
 
     .controller('FavCtrl', function ($http, $scope, $localStorage, $sce) {
+        
+        console.log("MERADAD");
         
         $scope.doRefresh = function() {
             
@@ -229,10 +225,10 @@ angular.module('starter')
         $scope.Favorites.forEach(function (e, i, a) {
             $http.get('http://www.theblushworks.com/api/get_post/?id=' + e).then(function (data) {
                console.log("FAVORITE",data);
-                $scope.favorite_posts.push(data.post);
+                $scope.favorite_posts.push(data.data.post);
 
                 if ($scope.favorite_posts.length == $scope.Favorites.length) {
-                        $scope.favorite_posts.forEach(function (post, index, array) {
+                        $scope.favorite_posts.forEach(function (post, position, list) {
                             post.excerpt = post.excerpt.substr(0, 100);
                             post.excerpt = post.excerpt + "...Read More";
                             post.excerpt = $sce.trustAsHtml(post.excerpt);
@@ -254,7 +250,7 @@ angular.module('starter')
         })
             
             
-            $scope.doRefresh();
+           
             
             $scope.toggleFavorite = function (post) {
             console.log("POST", post);
@@ -277,18 +273,10 @@ angular.module('starter')
 
         }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
+           
             
         }
        
-
+ $scope.doRefresh();
 
     })
