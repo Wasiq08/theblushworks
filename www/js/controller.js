@@ -217,65 +217,65 @@ angular.module('starter')
 
     })
 
-    // .controller('FavCtrl', function ($http, $scope, $localStorage, $sce) {
+    .controller('FavCtrl', function ($http, $scope, $localStorage, $sce) {
         
-    //     $scope.doRefresh = function() {
+        $scope.doRefresh = function() {
             
             
             
              
-    //     $scope.Favorites = $localStorage.Favorites;
-    //     $scope.favorite_posts = [];
-    //     $scope.Favorites.forEach(function (e, i, a) {
-    //         $http.get('http://www.theblushworks.com/api/get_post/?id=' + e).then(function (data) {
-    //            console.log("FAVORITE",data);
-    //             $scope.favorite_posts.push(data.post);
+        $scope.Favorites = $localStorage.Favorites;
+        $scope.favorite_posts = [];
+        $scope.Favorites.forEach(function (e, i, a) {
+            $http.get('http://www.theblushworks.com/api/get_post/?id=' + e).then(function (data) {
+               console.log("FAVORITE",data);
+                $scope.favorite_posts.push(data.post);
 
-    //             if ($scope.favorite_posts.length == $scope.Favorites.length) {
-    //                     $scope.favorite_posts.forEach(function (post, index, array) {
-    //                         post.excerpt = post.excerpt.substr(0, 100);
-    //                         post.excerpt = post.excerpt + "...Read More";
-    //                         post.excerpt = $sce.trustAsHtml(post.excerpt);
+                if ($scope.favorite_posts.length == $scope.Favorites.length) {
+                        $scope.favorite_posts.forEach(function (post, index, array) {
+                            post.excerpt = post.excerpt.substr(0, 100);
+                            post.excerpt = post.excerpt + "...Read More";
+                            post.excerpt = $sce.trustAsHtml(post.excerpt);
 
-    //                         if ($scope.Favorites.indexOf(post.id) != -1)
-    //                             post.isFavorite = true;
-    //                         else
-    //                             post.isFavorite = false;
+                            if ($scope.Favorites.indexOf(post.id) != -1)
+                                post.isFavorite = true;
+                            else
+                                post.isFavorite = false;
 
-    //                     })
-    //             }
+                        })
+                }
 
-    //         })
-    //             .finally(function () {
-    //                 $scope.$broadcast('scroll.refreshComplete');
+            })
+                .finally(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
 
-    //             })
+                })
             
-    //     })
+        })
             
             
-    //         $scope.doRefresh();
+            $scope.doRefresh();
             
-    //         $scope.toggleFavorite = function (post) {
-    //         console.log("POST", post);
-    //         post.isFavorite = !post.isFavorite;
+            $scope.toggleFavorite = function (post) {
+            console.log("POST", post);
+            post.isFavorite = !post.isFavorite;
 
-    //         if (post.isFavorite == true) {
-    //             $scope.Favorites.push(post.id);
-    //         } else {
-    //             $scope.Favorites.forEach(function (e, i, a) {
-    //                 if (e == post.id) {
-    //                     $scope.Favorites.splice(i, 1);
-    //                     console.log("SPLICE", i);
-    //                 }
+            if (post.isFavorite == true) {
+                $scope.Favorites.push(post.id);
+            } else {
+                $scope.Favorites.forEach(function (e, i, a) {
+                    if (e == post.id) {
+                        $scope.Favorites.splice(i, 1);
+                        console.log("SPLICE", i);
+                    }
 
-    //             })
-    //         }
+                })
+            }
 
-    //         $localStorage.Favorites = $scope.Favorites;
+            $localStorage.Favorites = $scope.Favorites;
           
 
-    //     }
+        }
             
             
             
@@ -287,8 +287,8 @@ angular.module('starter')
             
             
             
-    //     }
+        }
        
 
 
-    // })
+    })
